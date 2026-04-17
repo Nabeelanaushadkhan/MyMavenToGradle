@@ -5,7 +5,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/Nabeelanaushadkhan/MyMavenToGradle'
+                git branch: 'main',
+                    url: 'https://github.com/Nabeelanaushadkhan/MyMavenToGradle'
             }
         }
 
