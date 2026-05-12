@@ -10,22 +10,26 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh './gradlew clean build'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh './gradlew test'
-            }
-        }
-
-        stage('Archive') {
-            steps {
-                archiveArtifacts artifacts: 'build/libs/*.jar'
-            }
+       stage('Build') {
+    steps {
+        dir('MyMavenToGradle/MyMavenApp') {
+            sh './gradlew clean build'
         }
     }
+}
+
+        stage('Test') {
+    steps {
+        dir('MyMavenToGradle/MyMavenApp') {
+            sh './gradlew test'
+        }
+    }
+}
+
+        stage('Archive') {
+    steps {
+        archiveArtifacts artifacts: 'MyMavenToGradle/MyMavenApp/build/libs/*.jar'
+    }
+}
+}
 }
